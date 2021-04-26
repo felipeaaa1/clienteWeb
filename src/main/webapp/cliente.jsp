@@ -4,11 +4,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>tela cadastro de cliente</title>
 </head>
 
 
 <body>
+
+<div>
+	<%
+		if (request.getAttribute("reqMensagem") != null)
+			out.print(request.getAttribute("reqMensagem"));
+		
+	
+	%>
+</div>
 
 <form method="post" action="cliente">
 

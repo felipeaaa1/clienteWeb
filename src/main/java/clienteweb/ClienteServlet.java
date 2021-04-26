@@ -19,12 +19,6 @@ public class ClienteServlet extends HttpServlet{
 	List<Cliente> listaDeClientes = new ArrayList<>();
 	
 	
-@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setCharacterEncoding("UTF-8");
-		super.service(req, resp);
-//		metodo para modificar o tipo de char esperado, UTF-8 aceita acentos
-	}
 
 
 @Override
@@ -40,12 +34,24 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 
 @Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		tela .jsp ta chamando esse metodo, e aqui pega o que vier do campo "email" colocamos ele no obj Cliente cli e colocamos na ListaDeClientes
 		String email = req.getParameter("email");
 		Cliente cli = new Cliente();
 		cli.setEmail(email);
 		listaDeClientes.add(cli);
-		resp.getWriter().print("mandou o e-mail: "+ email);
-	
+		
+//		aqui chama a tela cliente, logo após a adição, pro, uma linha, contra, duas requisições ao servidor (Requisição extra GET)
+//		resp.sendRedirect("cliente");
+		
+//		aqui atribui mais um atributo ao obj req, no caso a lista atualizada e encaminha pro caminho definido no obj RequestDispatcher
+		RequestDispatcher dispatcher = req.getRequestDispatcher("cliente.jsp"); 
+		req.setAttribute("listaReq", listaDeClientes);
+		
+		
+//		mandar mais um atributo para 
+		req.setAttribute("reqMensagem", "deu bom o cadastro");
+		dispatcher.forward(req, resp);
+
 		
 	}
 
