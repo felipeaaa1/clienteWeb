@@ -1,6 +1,7 @@
 package clienteweb;
 
 import java.io.IOException;
+import java.nio.channels.ClosedByInterruptException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,21 +13,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.teste.Cliente;
+import br.com.teste.service.ClienteService;
 
 
 @WebServlet(urlPatterns = {"/cliente", "/clienteServlet", "/clienteController"})
 public class ClienteServlet extends HttpServlet{
-	List<Cliente> listaDeClientes = new ArrayList<>();
-	
 	
 
+	ClienteService clienteService;
 
+	
+	
+	@Override
+	public void init() throws ServletException {
+		clienteService = new ClienteService();
+		super.init();
+	}
 @Override
 protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+	String i = req.getParameter("i");
+	if(i!=null && i!="") {
+		clienteService.excluir(Integer.parseInt(i));
+	}
 //	inicializando um obj do tipo dispatcher com o endereço pra onde vai mandar as requisições 
 	RequestDispatcher dispatcher = req.getRequestDispatcher("cliente.jsp"); 
-	req.setAttribute("listaReq", listaDeClientes);
+	
+	req.setAttribute("listaReq", clienteService.getTodosClientes());
 	dispatcher.forward(req, resp);
 }
 
@@ -38,14 +50,15 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 		String email = req.getParameter("email");
 		Cliente cli = new Cliente();
 		cli.setEmail(email);
-		listaDeClientes.add(cli);
 		
+		clienteService.cadastrar(cli);
+
 //		aqui chama a tela cliente, logo após a adição, pro, uma linha, contra, duas requisições ao servidor (Requisição extra GET)
 //		resp.sendRedirect("cliente");
 		
 //		aqui atribui mais um atributo ao obj req, no caso a lista atualizada e encaminha pro caminho definido no obj RequestDispatcher
 		RequestDispatcher dispatcher = req.getRequestDispatcher("cliente.jsp"); 
-		req.setAttribute("listaReq", listaDeClientes);
+		req.setAttribute("listaReq", clienteService.getTodosClientes());
 		
 		
 //		mandar mais um atributo para 

@@ -31,8 +31,10 @@
 <%
 //o obg request vem como OBJ e temos que transformar-lo pra List
 List<Cliente> listaJsp = (List<Cliente>)request.getAttribute("listaReq");
+int i =0;
 for (Cliente c: listaJsp){
-	out.print(c.getEmail()+"<br>");
+	out.print(c.getEmail()+	"<a href='cliente?i="+i+"'> excluir</a> <br>");
+	i++;
 }
 
 
