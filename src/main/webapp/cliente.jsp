@@ -5,6 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>tela cadastro de cliente</title>
+<script>
+
+	function confirma(pi){
+		
+		if (window.confirm("tem certeza que deseja excluir?"))
+		location.href="cliente?i="+pi+"&acao=exc"
+	 }
+
+
+</script>
+
+
 </head>
 
 
@@ -12,18 +24,22 @@
 
 <div>
 	<%
-		if (request.getAttribute("reqMensagem") != null)
+		if (request.getAttribute("reqMensagem") != null){
 			out.print(request.getAttribute("reqMensagem"));
-		
+		}
+	
+	Cliente cli = (Cliente) request.getAttribute("cli");
+	Object iCli = request.getAttribute("iCli");
 	
 	%>
 </div>
 
 <form method="post" action="cliente">
 
+	<input type="hidden" name="i" value="<%=iCli%>"/>
 	E- mail:
-	<input type="text" value="" name="email" />
-	<input type="submit" value="save">
+	<input type="text" value="<%=cli.getEmail()%>" name="email" />
+	<input type="submit" value="save"/>
 
 </form>
 
@@ -33,11 +49,16 @@
 List<Cliente> listaJsp = (List<Cliente>)request.getAttribute("listaReq");
 int i =0;
 for (Cliente c: listaJsp){
-	out.print(c.getEmail()+	"<a href='cliente?i="+i+"'> excluir</a> <br>");
+// 	detalhe que ao chamar como referência uma função js precisa expecificar (javascript:) pq se n vai fazer uma requisição ao servidor
+%>  
+
+
+	<%=c.getEmail()%>  
+	<a href="javascript:confirma (<%=i%>)"> excluir</a>
+	<a href="cliente?i=<%=i%>&acao=edit"> editar</a> <br>
+<%
 	i++;
 }
-
-
 %>
 
 
