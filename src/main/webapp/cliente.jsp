@@ -16,7 +16,12 @@
 
 </script>
 
+<style >
 
+body{text-align: center;}
+table {margin: auto;}
+
+</style>
 </head>
 
 
@@ -40,10 +45,16 @@
 	E- mail:
 	<input type="text" value="<%=cli.getEmail()%>" name="email" />
 	<input type="submit" value="save"/>
+	
 
 </form>
-
-
+<br>
+<table border="15">
+	<tr>
+		<th  style="width: 250px"> E-mail</th>
+		<th style="width: 100px"> Ação</th>
+		
+	</tr>
 <%
 //o obg request vem como OBJ e temos que transformar-lo pra List
 List<Cliente> listaJsp = (List<Cliente>)request.getAttribute("listaReq");
@@ -51,18 +62,20 @@ int i =0;
 for (Cliente c: listaJsp){
 // 	detalhe que ao chamar como referência uma função js precisa expecificar (javascript:) pq se n vai fazer uma requisição ao servidor
 %>  
-
-
-	<%=c.getEmail()%>  
-	<a href="javascript:confirma (<%=i%>)"> excluir</a>
-	<a href="cliente?i=<%=i%>&acao=edit"> editar</a> <br>
+<tr>
+	<td>
+		<%=c.getEmail()%>  
+	</td>
+	<td>
+		<a href="javascript:confirma (<%=i%>)"> excluir</a>
+		<a href="cliente?i=<%=i%>&acao=edit"> editar</a> <br>
+	</td>
+</tr>
 <%
 	i++;
 }
 %>
-
-
-
+</table>
 
 </body>
 </html>

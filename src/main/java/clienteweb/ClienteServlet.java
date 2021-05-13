@@ -89,7 +89,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 //		coloca atributo como -1 para n pegar no nullpointer exception
 		req.setAttribute("iCli", -1);
 //		mandar mais um atributo para 
-		req.setAttribute("reqMensagem", "deu bom o cadastro");
+		req.setAttribute("reqMensagem", "email cadastrado/editado com sucesso");
 		dispatcher.forward(req, resp);
 
 		
