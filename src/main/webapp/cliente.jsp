@@ -8,7 +8,6 @@
 <script>
 
 	function confirma(pi){
-		
 		if (window.confirm("tem certeza que deseja excluir?"))
 		location.href="cliente?i="+pi+"&acao=exc"
 	 }
@@ -38,21 +37,38 @@ table {margin: auto;}
 	
 	%>
 </div>
-
+<table>
 <form method="post" action="cliente">
 
 	<input type="hidden" name="i" value="<%=iCli%>"/>
-	E- mail:
-	<input type="text" value="<%=cli.getEmail()%>" name="email" />
-	<input type="submit" value="save"/>
 	
+	<th>Nome:
+	<input type="text" value="<%=cli.getNome()%>" name="nome" /><br>
+	</th>
+	<th>
+	E- mail:
+	<input type="text" value="<%=cli.getEmail()%>" name="email" /><br>
+	</th>
+	<th>
+	Telefone:
+	<input type="text" value="<%=cli.getTelefone()%>" name="telefone" /><br>
+	</th>
+	
+</table>
+<br>
+<input type="submit" value="save"/>
+<br>
 
+	
 </form>
 <br>
-<table border="15">
+<table border="15" style="border-color: blue">
 	<tr>
+		<th  style="width: 250px"> Nome</th>
 		<th  style="width: 250px"> E-mail</th>
+		<th  style="width: 250px"> Telefone</th>
 		<th style="width: 100px"> Ação</th>
+		
 		
 	</tr>
 <%
@@ -64,7 +80,13 @@ for (Cliente c: listaJsp){
 %>  
 <tr>
 	<td>
+		<%=c.getNome()%>  
+	</td>
+	<td>
 		<%=c.getEmail()%>  
+	</td>
+	<td>
+		<%=c.getTelefone()%>  
 	</td>
 	<td>
 		<a href="javascript:confirma (<%=i%>)"> excluir</a>

@@ -1,5 +1,6 @@
 package clienteweb;
 
+import java.awt.Window;
 import java.io.IOException;
 import java.nio.channels.ClosedByInterruptException;
 import java.util.ArrayList;
@@ -35,6 +36,8 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 	int indice =-1;
 	Cliente cli = new Cliente();
 	cli.setEmail("");
+	cli.setNome("");
+	cli.setTelefone("");
 	String i = req.getParameter("i");
 	String acao = req.getParameter("acao");
 	if (i != null && i != "") {
@@ -67,6 +70,8 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //		tela .jsp ta chamando esse metodo, e aqui pega o que vier do campo "email" colocamos ele no obj Cliente cli e colocamos na ListaDeClientes
 		String email = req.getParameter("email");
+		String nome = req.getParameter("nome");
+		String telefone = req.getParameter("telefone");
 		String i = req.getParameter("i");
 		int indice =-1;
 		if (i != null && i != "") {
@@ -75,10 +80,14 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 		
 		Cliente cli = new Cliente();
 		cli.setEmail(email);
+		cli.setNome(nome);
+		cli.setTelefone(telefone);
 		clienteService.salvar(indice, cli);
 
 		cli = new Cliente();
 		cli.setEmail("");
+		cli.setNome("");
+		cli.setTelefone("");
 //		aqui chama a tela cliente, logo após a adição, pro, uma linha, contra, duas requisições ao servidor (Requisição extra GET)
 //		resp.sendRedirect("cliente");
 		
