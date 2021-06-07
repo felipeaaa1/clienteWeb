@@ -1,10 +1,6 @@
 package clienteweb;
 
-import java.awt.Window;
 import java.io.IOException;
-import java.nio.channels.ClosedByInterruptException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,6 +17,10 @@ import br.com.teste.service.ClienteService;
 public class ClienteServlet extends HttpServlet{
 	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	ClienteService clienteService;
 
 	
@@ -38,6 +38,9 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 	cli.setEmail("");
 	cli.setNome("");
 	cli.setTelefone("");
+	
+
+	
 	String i = req.getParameter("i");
 	String acao = req.getParameter("acao");
 	if (i != null && i != "") {

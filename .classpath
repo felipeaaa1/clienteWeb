@@ -24,5 +24,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-java-8.0.25.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/MySQL/Connector J 8.0/sqljdbc_9.2/ptb/mssql-jdbc-9.2.1.jre8.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/MySQL/Connector J 8.0/sqljdbc_9.2/ptb/mssql-jdbc-9.2.1.jre11.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/MySQL/Connector J 8.0/sqljdbc_9.2/ptb/mssql-jdbc-9.2.1.jre15.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

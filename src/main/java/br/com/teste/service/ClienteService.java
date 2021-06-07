@@ -3,12 +3,19 @@ package br.com.teste.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import DAO.ClienteDAO;
+import DAO.DataSource;
 import br.com.teste.Cliente;
 
 public class ClienteService {
 
-	
+//	DataSource dataSource = new DataSource();
+//	ClienteDAO clienteDAO = new ClienteDAO(dataSource);
+//	List<Cliente> listaDeClientes = clienteDAO.readAll();
+
 	List<Cliente> listaDeClientes = new ArrayList<>();
+	
+	
 	 public void cadastrar(Cliente cliente) {
 		 listaDeClientes.add(cliente);
 	 }
@@ -25,7 +32,7 @@ public class ClienteService {
 		if(indice != -1) {
 			listaDeClientes.set(indice, cliente);
 		}
-		else {
+		else { 
 			listaDeClientes.add(cliente);
 		}
 	}
